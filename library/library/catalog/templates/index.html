@@ -1,0 +1,129 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Бібліотека Сихова</title>
+{% endblock %}
+
+{% block content %}
+  <div id="test-body-mobile">
+
+    <div class="flash-messages" style="">
+    </div>
+
+
+    <div class="page-banner page-banner-body" style="font-size:15px;">
+     <strong>Ласкаво просимо</strong>у нашу онлайн-бібліотеку! Тут ви зможете знайти бесцелери на будь-який смак!.
+    </div>
+
+
+<div id="contentBody">
+
+<div class="carousel-section">
+
+  <hr>
+  <div class="carousel-container">
+    <div class="carousel carousel--progressively-enhanced slick-initialized slick-slider" id="categories_carousel">
+      <div  class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 2220px; transform: translate3d(0px, 0px, 0px);"><div class="category-item carousel__item slick-slide slick-current slick-active"  style="width: 128px;" tabindex="-1">
+        <a class="category-nostyle" >
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{% static 'images/pantheon.png' %}" width="30" height="30" alt="browse Art books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>Books:</strong></p>
+          <p class="category-count" name="" style="font-size:15px;">{{ num_of_books }}</p>
+        </a>
+      </div><div class="category-item carousel__item slick-slide slick-active"  style="width: 128px;">
+        <a class="category-nostyle" >
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{% static 'images/pantheon.png' %}" width="30" height="30" alt="browse Fantasy books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>Copies:</strong></p>
+          <p class="category-count" name="" style="font-size:15px;">{{ num_of_instances }}</p>
+        </a>
+      </div><div class="category-item carousel__item slick-slide slick-active"  style="width: 128px;" >
+        <a class="category-nostyle" >
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{% static 'images/pantheon.png' %}" width="30" height="30" alt="browse Biographies books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>Copies available:</strong></p>
+          <p class="category-count" name="" style="font-size:15px;">{{ num_instances_available }}</p>
+        </a>
+      </div><div class="category-item carousel__item slick-slide slick-active" style="width: 128px;">
+        <a class="category-nostyle">
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{% static 'images/pantheon.png' %}" width="30" height="30" alt="browse Science books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>Authors:</strong></p>
+          <p class="category-count" name="" style="font-size:15px;">{{ num_authors }}</p>
+        </a>
+      </div><div class="category-item carousel__item slick-slide slick-active"  style="width: 128px;" >
+        <a class="category-nostyle" >
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{% static 'images/pantheon.png' %}" width="30" height="30" alt="browse Biographies books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>Filter by words 'the' and 'poem':</strong></p>
+          <p class="category-count" name="" style="font-size:15px;">{{ num_book_and_genre }}</p>
+        </a>
+      </div></div></div>
+	  </div>
+  </div>
+</div>
+
+<div class="carousel-section">
+
+  <hr>
+  <div class="carousel-container">
+    <div class="carousel carousel--progressively-enhanced slick-initialized slick-slider" >
+      <div  class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 2220px; transform: translate3d(0px, 0px, 0px);">
+        {% for genre_name in list_genre %}
+
+        <div class="category-item carousel__item slick-slide slick-current slick-active"  style="width: 128px;" tabindex="-1">
+        <a class="category-nostyle" >
+          <div class="category-icon">
+              {% load static %}
+            <img class="category-img" src="{{ genre_name.genre_image.url }}" width="30" height="30" alt="browse Art books">
+          </div>
+          <p class="category-title" style="font-size:15px;"><strong>{{ genre_name.name }}</strong></p>
+          <p>{{ genre_name.num_genre }}</p>
+        </a>
+      </div>
+
+      {% endfor %}
+      </div></div>
+	  </div>
+  </div>
+</div>
+
+
+
+<div id="home-resources">
+  <div class="head" style="text-align:center;">
+    <h2>Про проект</h2>
+  </div>
+
+  <div id="home-about">
+    <div id="home-about-mission">
+      <h3 id="home-about-mission-tldr">
+        Якийсь текст
+      </h3>
+
+    </div>
+    <div class="home-resource-section">
+      <h4 id="home-about-mission-desc">
+        Твоя онлайн-бібліотека!
+      </h4>
+    </div>
+  </div>
+</div>
+
+
+ </div>
+
+  </div>
+
+<div class="clearfix"></div>
+{% endblock %}

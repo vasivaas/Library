@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Усі книги</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center;">Список книг</h1>
+<div class="page-banner page-banner-body" style="font-size:25px; background-color: #444444">
+     {% if book_list %}
+    <ul>
+        {% for book in book_list %}
+        {% if book.book_image %}
+        <img src="{{ book.book_image.url }}" style="height:279px; width:180px"/>
+        {% endif %}
+        <li style="list-style: none; color: white;">
+            <a href="{{ book.get_absolute_url }}" style="color: white">{{ book.title }}</a> ({{ book.author }})
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><strong>Книжок не знайдено!</strong></p>
+    {% endif %}
+</div>
+{% endblock %}

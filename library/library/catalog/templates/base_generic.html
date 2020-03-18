@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    {% block title %}<title>Local Library</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/page-user.css' %}">
+</head>
+<body id="home">
+    {% block sidebar %}
+<header id="header-bar" class="header-bar">
+  <div class="hamburger-component">
+      {% load static %}
+    <button type="button" class="hamburger-button"><img src="{% static 'images/menu.png' %}" alt="additional options menu"></button>
+    <div class="hamburger-dropdown-component navigation-dropdown-component">
+      <ul class="dropdown-menu hamburger-dropdown-menu">
+        <li style="font-size:15px;"><a href="{% url 'index' %}">Головна</a></li>
+        <li style="font-size:15px;"><a href="{% url 'books' %}">Всі книжки</a></li>
+        <li style="font-size:15px;"><a href="{% url 'authors' %}">Всі автори</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="logo-component">
+    <a href="{% url 'index' %}" title="The Internet Archive&#39;s Open Library: One page for every book">
+      <div class="logo-txt">
+          {% load static %}
+        <img class="logo-icon" src="{% static 'images/openlibrary-logo-tighter.svg' %}" width="194" height="47" alt="Open Library logo">
+      </div>
+    </a>
+  </div>
+
+  <ul class="navigation-component">
+    <li class="browse-menu" style="font-size:15px;">
+      <a href="{% url 'index' %}">Головна</a>
+    </li>
+    <li class="my-books-menu" style="font-size:15px;">
+      <a href="{% url 'books' %}">Всі книжки</a>
+    </li>
+    <li class="more-menu" style="font-size:15px;">
+      <a href="{% url 'authors' %}">Всі автори</a>
+    </li>
+      {% if user.is_authenticated %}
+      {% if user.is_staff %}
+        {% if perms.catalog.can_mark_returned %}
+            <li class="more-menu" style="font-size:15px;">
+              <a href="{% url 'all-borrowed' %}">Список позичених книг</a>
+            </li>
+        {% endif %}
+      {% else %}
+      <li class="more-menu" style="font-size:15px;">
+      <a href="{% url 'my-borrowed' %}">Особистий кабінет</a>
+    </li>
+      {% endif %}
+      <li class="more-menu" style="font-size:15px;">
+      <a href="{% url 'logout' %}?next={{request.path}}">Вихід</a>
+    </li>
+      {% else %}
+      <li class="more-menu" style="font-size:15px;">
+      <a href="{% url 'login' %}?next={{request.path}}">Вхід</a>
+      {% endif %}
+  </ul>
+  <style> .text-danger { color: red }</style>
+</header>
+{% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+{% block pagination %}
+  {% if is_paginated %}
+      <div class="pagination" style="font-size:15px;">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}
+{% endblock %}
+
+<footer>
+  <div id="footer-content">
+    <div id="footer-links">
+      <div>
+        <h2 style="font-size:15px;">Детальніше про книги</h2>
+        <ul>
+          <li style="font-size:15px;"><a href="{% url 'books' %}" >Всі книги</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="font-size:15px;">Меню</h2>
+        <ul>
+          <li style="font-size:15px;"><a href="{% url 'index' %}" >Головна</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="font-size:15px;">Детальніше про авторів</h2>
+        <ul>
+          <li style="font-size:15px;"><a href="{% url 'authors' %}" >Автори</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="font-size:15px;">Допомога</h2>
+        <ul>
+          <li style="font-size:15px;"><a href="" >Скарги та пропозиції</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+

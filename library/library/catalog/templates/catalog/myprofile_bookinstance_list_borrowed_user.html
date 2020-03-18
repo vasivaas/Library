@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div id="test-body-mobile">
+    <div id="contentHead">
+        <h1>Вітаємо {{user.get_username}}</h1>
+    </div>
+
+<div id="contentBody" style="font-size:25px;">
+    <p>Ваші позичені книги:</p>
+    {% if bookinstance_list %}
+    <ul>
+        {% for bookinst in bookinstance_list %}
+        <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+            <a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }})
+            <a href="{{ bookinst.book.link }}" target="_blank">Почати читати</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Ви поки не позичили жодної книги.</p>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

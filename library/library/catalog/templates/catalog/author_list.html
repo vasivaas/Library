@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Усі автори</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center;">Список авторів</h1>
+<div class="page-banner page-banner-body" style="font-size:25px; background-color: #444444">
+     {% if author_list %}
+    <ul>
+        {% for author in author_list %}
+        <li style="list-style: none; color: white;">
+            <a href="{{ author.get_absolute_url }}" style="color:white">{{ author.first_name }} {{ author.last_name }}</a> ({% if author.date_of_birth %}{{ author.date_of_birth }}{% endif %} - {% if author.date_of_death %}{{ author.date_of_death }}{% endif %})
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><strong>Авторів не знайдено!</strong></p>
+    {% endif %}
+</div>
+{% endblock %}
