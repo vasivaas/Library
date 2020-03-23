@@ -1,0 +1,55 @@
+{% extends 'base_generic.html' %}
+{% block title %}
+    <title>Сторінка реєстрації</title>
+{% endblock %}
+{% block sidebar %}
+
+{% endblock %}
+{% block content %}
+<div id="test-body-mobile">
+
+    <div class="flash-messages" style="">
+    </div>
+
+
+    <div class="page-banner page-banner-body" style="font-size:15px;">
+     <strong>Ласкаво просимо</strong>у нашу онлайн-бібліотеку! Тут ви зможете знайти бесцелери на будь-який смак!.
+    </div>
+
+    <div id="contentHead">
+    <h1>Log In</h1>
+</div>
+
+<div id="contentBody" style="font-size:25px;">
+
+
+  <form method="POST" action="">
+    {% csrf_token %}
+      {% for field in form %}
+    <div class="formElement">
+        <div class="label">
+            <span style="color: black">{{ field.label }}</span>>
+        </div>
+
+        <div class="input">
+          {{ field }}
+        </div>
+    </div>
+      {% endfor %}
+
+      {{form.errors}}
+
+    <div class="formElement bottom">
+        <br>
+        <input type="submit" name="Create User">
+    </div>
+    <div class="formElement">
+        <div class="label"></div>
+        <div class="input smaller"><a href="{% url 'login' %}">Вхід</a>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+{% endblock %}
+
