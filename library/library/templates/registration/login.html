@@ -53,6 +53,9 @@
         <input value="login" type="submit" class="login-submit" name="login" title="Log In" />
         <input type="hidden" name="next" value="{{ next }}" />
     </div>
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
     <div class="formElement">
         <div class="label"></div>
         <div class="input smaller"><a href="{% url 'password_reset' %}">Забули пароль?</a>
