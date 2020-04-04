@@ -6,6 +6,11 @@
 
 {% block content %}
 <h1 style="text-align: center;">Список книг</h1>
+{% if user.is_staff %}
+        {% if perms.catalog.can_mark_returned %}
+            <h3 style="text-align: center;"><a href="{% url 'book_create' %}">Створити книжку</a></h3>
+        {% endif %}
+{% endif %}
 <div class="page-banner page-banner-body" style="font-size:25px; background-color: #444444">
      {% if book_list %}
     <ul>
