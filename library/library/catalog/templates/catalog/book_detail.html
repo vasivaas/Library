@@ -2,6 +2,12 @@
 
 {% block content %}
 <footer>
+  {% if user.is_staff %}
+        {% if perms.catalog.can_mark_returned %}
+            <h3 style="text-align: center; font-size:15px;"><a href="{{ book.get_absolute_url }}/update">Редагувати книгу</a></h3>
+            <h3 style="text-align: center; font-size:15px;"><a href="{{ book.get_absolute_url }}/delete">Видалити книгу</a></h3>
+        {% endif %}
+  {% endif %}
   <div id="footer-content" style="font-size:15px;">
   <h1>Title: {{ book.title }}</h1>
   {% if book.book_image %}
