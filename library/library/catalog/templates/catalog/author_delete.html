@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div style="font-size:15px;">
+        <h1>Видалити автора</h1>
+
+        <p>Ви впевнені що хочете видалити автора: {{ author }}?</p>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="submit" action="" value="Так, видалити." />
+        </form>
+    </div>
+{% endblock %}
