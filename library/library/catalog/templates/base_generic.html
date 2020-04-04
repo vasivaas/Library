@@ -66,6 +66,8 @@
       {% else %}
       <li class="more-menu" style="font-size:15px;">
       <a href="{% url 'login' %}?next={{request.path}}">Вхід</a>
+      <br><br>
+       <a htref="{% url 'register' %}?next={{request.path}}">Реєстрація</a>
       {% endif %}
   </ul>
   <style> .text-danger { color: red }</style>
