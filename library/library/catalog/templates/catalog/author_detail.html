@@ -2,6 +2,12 @@
 
 {% block content %}
 <footer>
+  {% if user.is_staff %}
+        {% if perms.catalog.can_mark_returned %}
+            <h3 style="text-align: center; font-size:15px;"><a href="{{ author.get_absolute_url }}/update">Редагувати автора</a></h3>
+            <h3 style="text-align: center; font-size:15px;"><a href="{{ author.get_absolute_url }}/delete">Видалити автора</a></h3>
+        {% endif %}
+  {% endif %}
   <div id="footer-content" style="font-size:15px;">
   <h1>Author: {{ author.first_name }}, {{ author.last_name }}</h1>
 
